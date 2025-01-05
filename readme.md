@@ -7,6 +7,7 @@ https://roadmap.sh/projects/expense-tracker-api
 
 Перед запуском необходимо создать .env файл:
 
+```shell
 API_HOST=localhost
 API_PORT=4012
 DB_NAME=expense-tracker
@@ -16,6 +17,7 @@ DB_PORT=5432
 DB_HOST=localhost
 TOKEN_SECRET=ExpenseTrackerSecret
 TOKEN_PEPPER=ExpenseTrackerPepper
+```
 
 Database Seeds:
 
