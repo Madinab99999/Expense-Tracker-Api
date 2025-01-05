@@ -1,0 +1,88 @@
+### регистрация пользователя
+POST http://localhost:4012/register HTTP/1.1
+Content-Type: application/json
+
+{ "data" : {"email": "bimakanova@gmail.com", "password":"passwordASH236./" }}
+
+### авторизация пользователя
+POST http://localhost:4012/login HTTP/1.1
+Content-Type: application/json
+
+{ "data" : {"email": "bobrova123@gmail.com", "password":"passwordASH236." }}
+
+### токены
+@refresh-token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJvYnJvdmExMjNAZ21haWwuY29tIiwiZXhwIjoxNzM2MTQ4MDg5LCJpYXQiOjE3MzYwNjE2ODksInN1YiI6IjgifQ.JVTXxiftZ37QOxNds8b_hIZwjbaIqmMYBD-T-XIIYkA
+@access-token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJvYnJvdmExMjNAZ21haWwuY29tIiwiZXhwIjoxNzM2MDYyNTg5LCJpYXQiOjE3MzYwNjE2ODksInN1YiI6IjgifQ.ZfhHFjvLgkCB2YU2ShF9rzmBu0h5e5yR1RB2IH9uxm0
+
+### получение токена
+POST http://localhost:4012/access-token HTTP/1.1
+Content-Type: application/json
+
+{ "data" : {"refresh_token": "{{refresh-token}}" }}
+
+### получение списка всех категорий
+GET  http://localhost:4012/categories HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+### создание расхода
+POST  http://localhost:4012/expenses HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+{ "data" : {"amount": 5000, "date_expense":"2025-01-05", "category":"Others", "description":"description" }}
+
+### обновление расхода
+PUT  http://localhost:4012/expenses/5 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+{ "data" : {"amount": 1000, "date_expense":"2025-01-01", "category":"Groceries", "description":"Groceries" }}
+
+### удаление расхода
+DELETE http://localhost:4012/expenses/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+### получение списка расходов
+GET  http://localhost:4012/expenses?cursor=10&limit=5 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+### получение списка расходов
+GET  http://localhost:4012/expenses?category=Groceries HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+### получение списка расходов
+GET  http://localhost:4012/expenses?time_range=week&max_amount=45000&sort_by=created_at&order=asc HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+### получение списка расходов
+GET  http://localhost:4012/expenses?time_range=date&sort_by=amount&order=asc HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+### получение списка расходов
+GET  http://localhost:4012/expenses?time_range=3months&sort_by=amount&order=asc HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+### получение списка расходов
+GET  http://localhost:4012/expenses?time_range=year&sort_by=amount&order=asc&limit=25 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+### получение списка расходов
+GET  http://localhost:4012/expenses?time_range=custom_date&start_date=2024-12-12&end_date=2024-12-30&limit=2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+### получение статистики по расходам
+GET  http://localhost:4012/expenses/stats?start_date=2024-12-12&end_date=2024-12-30 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+
+
+
