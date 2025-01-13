@@ -22,7 +22,6 @@ func (s *AuthService) Register(ctx context.Context, email, password string) (*mo
 		return nil, ErrValidation
 	}
 
-	//tokenPepper := s.config.TokenPepper
 	tokenSecret := s.config.TokenSecret
 	passwordHash, salt, err := auth.HashPassword(password)
 	if err != nil {

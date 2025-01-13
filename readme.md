@@ -16,7 +16,6 @@ DB_PASSWORD=postgresql
 DB_PORT=5432
 DB_HOST=localhost
 TOKEN_SECRET=ExpenseTrackerSecret
-TOKEN_PEPPER=ExpenseTrackerPepper
 ```
 
 Database Seeds:

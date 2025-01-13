@@ -33,7 +33,6 @@ func (s *AuthService) Login(ctx context.Context, email, password string) (*model
 		return nil, fmt.Errorf("database error: %w", err)
 	}
 
-	//tokenPepper := s.config.TokenPepper
 	tokenSecret := s.config.TokenSecret
 	isValid, err := auth.VerifyPassword(password, user.PasswordHash, user.Salt)
 	if err != nil {

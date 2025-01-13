@@ -17,7 +17,6 @@ type Config struct {
 	DBName     string
 	DBPort     string
 
-	TokenPepper string
 	TokenSecret string
 }
 
@@ -33,7 +32,6 @@ func LoadConfig() *Config {
 		DBPort:      getEnv("DB_PORT", "5432"),
 		DBName:      getEnv("DB_NAME", "expense_tracker"),
 		TokenSecret: getEnv("TOKEN_SECRET", "ExpenseTrackerSecret"),
-		TokenPepper: getEnv("TOKEN_PEPPER", "ExpenseTrackerPepper"),
 	}
 }
 

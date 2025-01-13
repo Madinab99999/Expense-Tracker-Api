@@ -11,13 +11,7 @@ import (
 )
 
 const (
-	SaltLength   = 16
-	PepperLength = 32
-	HashLength   = 64
-	Iterations   = 210000
-)
-
-const (
+	SaltLength           = 16
 	AccessTokenDuration  = 15 * time.Minute
 	RefreshTokenDuration = 24 * time.Hour
 	BcryptCost           = bcrypt.DefaultCost
