@@ -23,7 +23,15 @@ WHERE user_id = 1
   AND date_expense >= date_trunc('month', NOW()) - INTERVAL '3 months'
   AND date_expense < NOW();
 ```
-4. Фильтр по пользовательскому диапазону дат:
+4. Фильтр за этот год:
+```sql
+SELECT * 
+FROM expense
+WHERE user_id = 1
+  AND date_expense >= date_trunc('year', NOW())
+  AND date_expense < NOW();
+```
+5. Фильтр по пользовательскому диапазону дат:
 ```sql
 SELECT * 
 FROM expense
@@ -31,7 +39,7 @@ WHERE user_id = 1
   AND date_expense >= '2024-12-20'
   AND date_expense <= '2024-12-30';
 ```
-5. Фильтр по минимальной и максимальной сумме:
+6. Фильтр по минимальной и максимальной сумме:
 ```sql
 SELECT * 
 FROM expense

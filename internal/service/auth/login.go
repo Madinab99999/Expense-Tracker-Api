@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	auth_repository "github.com/Madinab99999/Expense-Tracker-Api/internal/api/repository/auth"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/auth"
+	auth_repository "github.com/Madinab99999/Expense-Tracker-Api/internal/db/repository/auth"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/models"
 )
 
@@ -33,9 +33,9 @@ func (s *AuthService) Login(ctx context.Context, email, password string) (*model
 		return nil, fmt.Errorf("database error: %w", err)
 	}
 
-	tokenPepper := s.config.TokenPepper
+	//tokenPepper := s.config.TokenPepper
 	tokenSecret := s.config.TokenSecret
-	isValid, err := auth.VerifyPassword(password, tokenPepper, user.PasswordHash, user.Salt)
+	isValid, err := auth.VerifyPassword(password, user.PasswordHash, user.Salt)
 	if err != nil {
 		log.ErrorContext(ctx, "failed to verify password", "error", err)
 		return nil, fmt.Errorf("password verification failed: %w", err)

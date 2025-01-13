@@ -13,10 +13,9 @@ import (
 
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/api/handler"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/api/middleware"
-	"github.com/Madinab99999/Expense-Tracker-Api/internal/api/repository"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/api/router"
-	"github.com/Madinab99999/Expense-Tracker-Api/internal/api/service"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/configs"
+	"github.com/Madinab99999/Expense-Tracker-Api/internal/service"
 )
 
 type Api struct {
@@ -26,9 +25,8 @@ type Api struct {
 	server *http.Server
 }
 
-func New(logger *slog.Logger, config *configs.Config, db *sql.DB) *Api {
-	repo := repository.New(slog.With("repository", "repository"), db)
-	svc := service.New(slog.With("service", "service"), config, repo)
+func New(logger *slog.Logger, config *configs.Config, db *sql.DB, svc *service.Service) *Api {
+
 	handler := handler.New(slog.With("handler", "handler"), svc)
 
 	midd := middleware.New(config, slog.With("middleware", "middleware"))

@@ -22,9 +22,9 @@ func (s *AuthService) Register(ctx context.Context, email, password string) (*mo
 		return nil, ErrValidation
 	}
 
-	tokenPepper := s.config.TokenPepper
+	//tokenPepper := s.config.TokenPepper
 	tokenSecret := s.config.TokenSecret
-	passwordHash, salt, err := auth.HashPassword(password, tokenPepper)
+	passwordHash, salt, err := auth.HashPassword(password)
 	if err != nil {
 		log.ErrorContext(ctx, "failed to hash password", "error", err)
 		return nil, fmt.Errorf("password hashing failed: %w", err)

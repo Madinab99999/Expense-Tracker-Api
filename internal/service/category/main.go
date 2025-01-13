@@ -3,7 +3,7 @@ package category_service
 import (
 	"log/slog"
 
-	cat_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/api/repository/category"
+	cat_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/db/repository/category"
 )
 
 type CategoryService struct {

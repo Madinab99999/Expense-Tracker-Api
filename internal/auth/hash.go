@@ -1,13 +1,13 @@
 package auth
 
 import (
-	"crypto/hmac"
 	"crypto/rand"
-	"crypto/sha512"
-	"crypto/subtle"
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 const (
@@ -20,41 +20,29 @@ const (
 const (
 	AccessTokenDuration  = 15 * time.Minute
 	RefreshTokenDuration = 24 * time.Hour
+	BcryptCost           = bcrypt.DefaultCost
 )
 
-func HashPassword(password string, pepper string) (string, string, error) {
+func HashPassword(password string) (string, string, error) {
 
 	saltBytes := make([]byte, SaltLength)
 	if _, err := rand.Read(saltBytes); err != nil {
 		return "", "", fmt.Errorf("%w: %v", ErrSaltGeneration, err)
 	}
 
-	hashBytes := hashWithSaltAndPepper([]byte(password), saltBytes, []byte(pepper))
+	saltedPassword := append([]byte(password), saltBytes...)
+	hashedPassword, err := bcrypt.GenerateFromPassword(saltedPassword, BcryptCost)
+	if err != nil {
+		return "", "", fmt.Errorf("failed to hash password: %w", err)
+	}
 
-	hash := base64.StdEncoding.EncodeToString(hashBytes)
+	hash := base64.StdEncoding.EncodeToString(hashedPassword)
 	salt := base64.StdEncoding.EncodeToString(saltBytes)
 
 	return hash, salt, nil
 }
 
-func hashWithSaltAndPepper(password, salt, pepper []byte) []byte {
-	pepperedPass := make([]byte, len(password)+len(pepper))
-	copy(pepperedPass, password)
-	copy(pepperedPass[len(password):], pepper)
-
-	hash := hmac.New(sha512.New, salt)
-
-	result := pepperedPass
-	for i := 0; i < Iterations; i++ {
-		hash.Reset()
-		hash.Write(result)
-		result = hash.Sum(nil)
-	}
-
-	return result
-}
-
-func VerifyPassword(password, pepper, hash, salt string) (bool, error) {
+func VerifyPassword(password, hash, salt string) (bool, error) {
 
 	decodedSalt, err := base64.StdEncoding.DecodeString(salt)
 	if err != nil {
@@ -66,7 +54,14 @@ func VerifyPassword(password, pepper, hash, salt string) (bool, error) {
 		return false, fmt.Errorf("error decoding hash: %w", err)
 	}
 
-	newHash := hashWithSaltAndPepper([]byte(password), decodedSalt, []byte(pepper))
+	saltedPassword := append([]byte(password), decodedSalt...)
 
-	return subtle.ConstantTimeCompare(newHash, decodedHash) == 1, nil
+	if err := bcrypt.CompareHashAndPassword(decodedHash, saltedPassword); err != nil {
+		if errors.Is(err, bcrypt.ErrMismatchedHashAndPassword) {
+			return false, nil
+		}
+		return false, fmt.Errorf("error comparing hash and password: %w", err)
+	}
+
+	return true, nil
 }

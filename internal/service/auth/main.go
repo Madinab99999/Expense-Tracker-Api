@@ -4,8 +4,8 @@ import (
 	"errors"
 	"log/slog"
 
-	auth_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/api/repository/auth"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/configs"
+	auth_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/db/repository/auth"
 
 	"github.com/go-playground/validator/v10"
 )

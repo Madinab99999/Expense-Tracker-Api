@@ -48,8 +48,7 @@ func (s *seeder) users(tx *sql.Tx) error {
 	)
 
 	for _, user := range users {
-		tokenPepper := s.config.TokenPepper
-		passwordHash, salt, err := auth.HashPassword(user.password, tokenPepper)
+		passwordHash, salt, err := auth.HashPassword(user.password)
 		if err != nil {
 			return fmt.Errorf("failed to hash password for user %s: %w", user.email, err)
 		}

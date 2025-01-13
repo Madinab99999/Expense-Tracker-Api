@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	auth_repository "github.com/Madinab99999/Expense-Tracker-Api/internal/api/repository/auth"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/auth"
+	auth_repository "github.com/Madinab99999/Expense-Tracker-Api/internal/db/repository/auth"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/models"
 )
 

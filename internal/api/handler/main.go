@@ -6,7 +6,7 @@ import (
 	auth_handler "github.com/Madinab99999/Expense-Tracker-Api/internal/api/handler/auth"
 	category_handler "github.com/Madinab99999/Expense-Tracker-Api/internal/api/handler/category"
 	expense_handler "github.com/Madinab99999/Expense-Tracker-Api/internal/api/handler/expense"
-	"github.com/Madinab99999/Expense-Tracker-Api/internal/api/service"
+	"github.com/Madinab99999/Expense-Tracker-Api/internal/service"
 )
 
 type Handler struct {

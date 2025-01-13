@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strconv"
 
-	expense_service "github.com/Madinab99999/Expense-Tracker-Api/internal/api/service/expense"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/auth"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/models"
+	expense_service "github.com/Madinab99999/Expense-Tracker-Api/internal/service/expense"
 	"github.com/Madinab99999/Expense-Tracker-Api/pkg/httputils/response"
 )
 

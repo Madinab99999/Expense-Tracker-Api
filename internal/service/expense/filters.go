@@ -30,7 +30,7 @@ func (s *ExpenseService) processTimeFilter(filter *models.ExpenseFilter) {
 		filter.EndDate = stringPointer(now.Format("2006-01-02"))
 
 	case models.PastYear:
-		startDate := now.AddDate(-1, 0, 0)
+		startDate := time.Date(now.Year(), 1, 1, 0, 0, 0, 0, now.Location())
 		filter.StartDate = stringPointer(startDate.Format("2006-01-02"))
 		filter.EndDate = stringPointer(now.Format("2006-01-02"))
 

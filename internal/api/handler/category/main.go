@@ -3,7 +3,7 @@ package category_handler
 import (
 	"log/slog"
 
-	cat_service "github.com/Madinab99999/Expense-Tracker-Api/internal/api/service/category"
+	cat_service "github.com/Madinab99999/Expense-Tracker-Api/internal/service/category"
 )
 
 type CategoryHandler struct {

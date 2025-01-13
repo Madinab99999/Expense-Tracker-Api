@@ -3,7 +3,7 @@ package auth_handler
 import (
 	"log/slog"
 
-	auth_serv "github.com/Madinab99999/Expense-Tracker-Api/internal/api/service/auth"
+	auth_serv "github.com/Madinab99999/Expense-Tracker-Api/internal/service/auth"
 )
 
 type AuthHandler struct {

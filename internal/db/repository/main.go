@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"log/slog"
 
-	auth_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/api/repository/auth"
-	cat_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/api/repository/category"
-	expense_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/api/repository/expense"
+	auth_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/db/repository/auth"
+	cat_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/db/repository/category"
+	expense_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/db/repository/expense"
 )
 
 type Repository struct {

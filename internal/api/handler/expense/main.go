@@ -3,7 +3,7 @@ package expense_handler
 import (
 	"log/slog"
 
-	expense_service "github.com/Madinab99999/Expense-Tracker-Api/internal/api/service/expense"
+	expense_service "github.com/Madinab99999/Expense-Tracker-Api/internal/service/expense"
 )
 
 type ExpenseHandler struct {

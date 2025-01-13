@@ -3,11 +3,11 @@ package service
 import (
 	"log/slog"
 
-	"github.com/Madinab99999/Expense-Tracker-Api/internal/api/repository"
-	auth_service "github.com/Madinab99999/Expense-Tracker-Api/internal/api/service/auth"
-	category_service "github.com/Madinab99999/Expense-Tracker-Api/internal/api/service/category"
-	expense_service "github.com/Madinab99999/Expense-Tracker-Api/internal/api/service/expense"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/configs"
+	"github.com/Madinab99999/Expense-Tracker-Api/internal/db/repository"
+	auth_service "github.com/Madinab99999/Expense-Tracker-Api/internal/service/auth"
+	category_service "github.com/Madinab99999/Expense-Tracker-Api/internal/service/category"
+	expense_service "github.com/Madinab99999/Expense-Tracker-Api/internal/service/expense"
 )
 
 type Service struct {

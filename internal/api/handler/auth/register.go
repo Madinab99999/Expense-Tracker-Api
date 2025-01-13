@@ -4,8 +4,8 @@ import (
 	"errors"
 	"net/http"
 
-	auth_service "github.com/Madinab99999/Expense-Tracker-Api/internal/api/service/auth"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/models"
+	auth_service "github.com/Madinab99999/Expense-Tracker-Api/internal/service/auth"
 	"github.com/Madinab99999/Expense-Tracker-Api/pkg/httputils/request"
 	"github.com/Madinab99999/Expense-Tracker-Api/pkg/httputils/response"
 )

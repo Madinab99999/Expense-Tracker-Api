@@ -8,6 +8,8 @@ import (
 
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/api"
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/db"
+	"github.com/Madinab99999/Expense-Tracker-Api/internal/db/repository"
+	"github.com/Madinab99999/Expense-Tracker-Api/internal/service"
 
 	"github.com/Madinab99999/Expense-Tracker-Api/internal/configs"
 )
@@ -35,8 +37,9 @@ func main() {
 	if err := db.Init(ctx); err != nil {
 		panic(err)
 	}
-
-	a := api.New(slog.With("api", "api"), cfg, db.Pg)
+	repo := repository.New(slog.With("repository", "repository"), db.Pg)
+	svc := service.New(slog.With("service", "service"), cfg, repo)
+	a := api.New(slog.With("api", "api"), cfg, db.Pg, svc)
 	go func(ctx context.Context, cancelFunc context.CancelFunc) {
 		if err := a.Start(ctx); err != nil {
 			slog.ErrorContext(ctx, "failed to start api", "error", err.Error())

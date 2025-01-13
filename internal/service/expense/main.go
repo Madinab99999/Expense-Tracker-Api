@@ -3,7 +3,7 @@ package expense_service
 import (
 	"log/slog"
 
-	expense_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/api/repository/expense"
+	expense_repo "github.com/Madinab99999/Expense-Tracker-Api/internal/db/repository/expense"
 
 	"github.com/go-playground/validator/v10"
 )
